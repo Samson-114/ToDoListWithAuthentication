@@ -4,7 +4,6 @@ const register = async (req, res) => {
   try {
     const user = await User.create({ ...req.body });
     const token = user.createJWT();
-    console.log(`after create token, token ${token}`);
     res.json({ msg: "user created", token }).status(201);
   } catch (error) {
     if (error.code === 11000) {
@@ -19,17 +18,16 @@ const login = async (req, res) => {
   const { username, password } = req.body;
   try {
     const user = await User.findOne({ username });
-    console.log(user);
     if (!user) {
-      return res.json({ msg: "username don't exit" }).status(400);
+      return res.status(400).json({ msg: "username don't exit" });
     }
     user.createJWT();
     const isPasswordCorrect = await user.comparePassword(password);
     if (!isPasswordCorrect) {
-      return res.json({ msg: "incorrect password" }).status(401);
+      return res.status(401).json({ msg: "incorrect password" });
     }
     const token = user.createJWT();
-    console.log(token);
+
     return res.json({ msg: "login successful", token }).status(200);
   } catch (error) {
     console.log(error);

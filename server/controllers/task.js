@@ -2,10 +2,10 @@ const Task = require("../models/tasks");
 const createTask = async (req, res) => {
   try {
     const task = await Task.create({
-      name: req.body.task,
+      name: req.body.name,
       userid: req.user.userId,
     });
-    console.log(task);
+
     res.json({ msg: "task created", task }).status(200);
   } catch (error) {
     res.json({ msg: "task cannot be crated" });
@@ -25,7 +25,7 @@ const getTasks = async (req, res) => {
 const updateTask = async (req, res) => {
   try {
     const task = await Task.find({ _id: req.params.taskId });
-    await Task.updateOne({ _id: req.params.taskId }, { done: !task.done });
+    await Task.updateOne({ _id: req.params.taskId }, { done: !task[0].done });
     res.status(200).json({ msg: "task is updated" });
   } catch (error) {
     res.json({ msg: "tasks cannot be update" });

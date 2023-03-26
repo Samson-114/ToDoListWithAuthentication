@@ -21,7 +21,6 @@ UserSchema.pre("save", async function (next) {
 });
 
 UserSchema.methods.createJWT = function () {
-  console.log("token created");
   return jwt.sign(
     { userId: this._id, username: this.username },
     process.env.JWT_SECRET,

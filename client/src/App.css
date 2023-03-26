@@ -1,0 +1,22 @@
+* {
+  box-sizing: border-box;
+}
+
+.warning {
+  color: red;
+  font-size: 12px;
+}
+
+.form {
+  /* margin-left: auto;
+  margin-right: auto;
+  width: 15%; */
+}
+
+.red {
+  color: red;
+}
+
+.green {
+  color: green;
+}

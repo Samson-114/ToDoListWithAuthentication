@@ -4,9 +4,12 @@ const jwt = require("jsonwebtoken");
 const auth = async (req, res, next) => {
   // check header
   const authHeader = req.headers.authorization;
+
+  console.log(authHeader);
   if (!authHeader || !authHeader.startsWith("Bearer")) {
     return res.json({ msg: "Authentication invalid" }).status(401);
   }
+
   const token = authHeader.split(" ")[1];
 
   try {

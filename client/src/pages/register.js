@@ -1,14 +1,17 @@
 import { useState } from "react";
 import Axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { updateToken, selectUserInfo } from "../user/userInfo";
 
 export const Register = (props) => {
   const dispatch = useDispatch();
 
+  const [isPasswordSafe, SetIsPasswordSafe] = useState(true);
+  const [isUsernameRepeated, setIsUsernameRepeated] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [msg, setMsg] = useState("");
 
   const navigate = useNavigate();
 
@@ -20,6 +23,14 @@ export const Register = (props) => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    setIsUsernameRepeated(false);
+    SetIsPasswordSafe(true);
+
+    if (password.length < 6) {
+      SetIsPasswordSafe(false);
+      return;
+    }
     try {
       const res = await Axios.post("http://localhost:8080/api/auth/register", {
         username: username,
@@ -28,38 +39,36 @@ export const Register = (props) => {
 
       if (parseInt(res.status) == 200) {
         dispatch(updateToken({ userId: "", token: res.data.token }));
-        navigate("/home");
+        navigate("/");
       }
     } catch (error) {
-      console.log(error);
+      if (error.response.status == "409") {
+        setMsg(error.response.data.err);
+        setIsUsernameRepeated(true);
+      }
     }
   };
 
   return (
-    <>
+    <div className="form">
       <h1>Register Page</h1>
       <form onSubmit={handleSubmit}>
         <label>Username</label>
         <br />
-        <input
-          type="text"
-          placeholder="username"
-          onChange={handleUsername}
-          required
-        />
+        {true && <p className="warning">{msg}</p>}
+        <input type="text" onChange={handleUsername} required />
         <br />
         <label>Password</label>
         <br />
-        <input
-          type="password"
-          placeholder="password"
-          onChange={handlePassword}
-          required
-        />
+        {!isPasswordSafe && (
+          <p className="warning">password has to be at least 6 character</p>
+        )}
+
+        <input type="password" onChange={handlePassword} required />
         <br />
-        <input type="submit" />
-        <br />
+        <input type="submit" value="register" />
       </form>
-    </>
+      <Link to="/">already have account, login</Link>
+    </div>
   );
 };
