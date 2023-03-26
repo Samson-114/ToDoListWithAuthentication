@@ -61,25 +61,40 @@ export const Login = (props) => {
   };
   return (
     <>
-      <div className="form">
-        <h1>Login Page</h1>
+      <div className="formContainer">
+        <h1 className="formTitle">Login Page</h1>
         <form onSubmit={handleSubmit}>
-          <label for="username">Username</label>
-          <br />
-          {!isUsernameCorrect && <p className="warning">{msg}</p>}
-          <input type="text" id="username" onChange={handleUsername} required />
-          <br />
-          <label for="password">Password</label>
-          <br />
-          {!isPasswordCorrect && <p className="warning">{msg}</p>}
-          <input
-            type="password"
-            id="password"
-            onChange={handlePassword}
-            required
-          />
-          <br />
-          <input type="submit" value="login" />
+          <div className="labelContainer">
+            <label for="username">Username</label>
+          </div>
+          {/* <br /> */}
+          <div>
+            {!isUsernameCorrect && <p className="warning">{msg}</p>}
+            <input
+              type="text"
+              id="username"
+              onChange={handleUsername}
+              required
+            />
+          </div>
+          {/* <br /> */}
+          <div className="labelContainer">
+            <label for="password">Password</label>
+          </div>
+          {/* <br /> */}
+          <div>
+            {!isPasswordCorrect && <p className="warning">{msg}</p>}
+            <input
+              type="password"
+              id="password"
+              onChange={handlePassword}
+              required
+            />
+          </div>
+          {/* <br /> */}
+          <div className="submitContainer">
+            <input type="submit" value="login" />
+          </div>
         </form>
         <Link to="/register">don't have account, register</Link>
       </div>

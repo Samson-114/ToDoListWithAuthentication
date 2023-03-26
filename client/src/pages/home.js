@@ -103,30 +103,42 @@ export const Home = (props) => {
 
   return (
     <>
-      <h1>to-do-list</h1>
-      <button onClick={handleLogout}>logout</button>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="task"
-          id="task"
-          value={task}
-          onChange={handleChange}
-        />
-        <input type="submit" value="addTask" />
-      </form>
-      <div className="list">
-        {props.list.map((list, index) => {
-          return (
-            <Item
-              _id={list._id}
-              name={list.name}
-              done={list.done}
-              deleteItem={() => deleteItem(list._id)}
-              updateItem={() => updateItem(list._id)}
-            />
-          );
-        })}
+      <div className="mainContainer">
+        <div className="navbarContainer">
+          <h1>to-do-list</h1>
+          <button onClick={handleLogout}>logout</button>
+        </div>
+        <div className="bodyContainer">
+          <form onSubmit={handleSubmit}>
+            <div className="inputBar">
+              <div>
+                <input
+                  type="text"
+                  name="task"
+                  id="task"
+                  value={task}
+                  onChange={handleChange}
+                />
+              </div>
+              <div>
+                <input type="submit" value="addTask" />
+              </div>
+            </div>
+          </form>
+          <div className="list">
+            {props.list.map((list, index) => {
+              return (
+                <Item
+                  _id={list._id}
+                  name={list.name}
+                  done={list.done}
+                  deleteItem={() => deleteItem(list._id)}
+                  updateItem={() => updateItem(list._id)}
+                />
+              );
+            })}
+          </div>
+        </div>
       </div>
     </>
   );

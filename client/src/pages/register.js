@@ -50,23 +50,34 @@ export const Register = (props) => {
   };
 
   return (
-    <div className="form">
-      <h1>Register Page</h1>
+    <div className="formContainer">
+      <h1 className="formTitle">Register Page</h1>
       <form onSubmit={handleSubmit}>
-        <label>Username</label>
-        <br />
-        {true && <p className="warning">{msg}</p>}
-        <input type="text" onChange={handleUsername} required />
-        <br />
-        <label>Password</label>
-        <br />
-        {!isPasswordSafe && (
-          <p className="warning">password has to be at least 6 character</p>
-        )}
-
-        <input type="password" onChange={handlePassword} required />
-        <br />
-        <input type="submit" value="register" />
+        <div className="labelContainer">
+          <label>Username</label>
+        </div>
+        {/* <br /> */}
+        <div>
+          {true && <p className="warning">{msg}</p>}
+          <input type="text" onChange={handleUsername} required />
+        </div>
+        {/* <br /> */}
+        <div className="labelContainer">
+          <label>Password</label>
+        </div>
+        {/* <br /> */}
+        <div>
+          {!isPasswordSafe && (
+            <p className="warning">password has to be at least 6 character</p>
+          )}
+        </div>
+        <div>
+          <input type="password" onChange={handlePassword} required />
+        </div>
+        {/* <br /> */}
+        <div className="submitContainer">
+          <input type="submit" value="register" />
+        </div>
       </form>
       <Link to="/">already have account, login</Link>
     </div>

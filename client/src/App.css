@@ -1,22 +1,150 @@
+/* general style */
 * {
   box-sizing: border-box;
+  margin: 0px;
 }
 
+html {
+  background: linear-gradient(#aee9f5, #a7adef);
+  height: 100vh;
+}
+
+button:hover {
+  cursor: pointer;
+}
+/*  */
+
+/* style for login and register form */
 .warning {
   color: red;
   font-size: 12px;
 }
 
-.form {
-  /* margin-left: auto;
-  margin-right: auto;
-  width: 15%; */
+.formContainer {
+  background: linear-gradient(#a7adef, #aee9f5);
+  box-sizing: content-box;
+  width: 204.8px;
+  height: 300px;
+  margin: calc((600px - 350px) / 2) auto;
+  border-radius: 5%;
+  border: 1px solid black;
+  padding: 36px;
+  padding-top: 24px;
+}
+
+.formTitle {
+  margin-bottom: 12px;
+  font-weight: bold;
+}
+
+.labelContainer {
+  margin-bottom: 6px;
+}
+
+.formContainer form label {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.formContainer form input {
+  width: 100%;
+  height: 36px;
+  border-radius: 12px;
+  font-size: 24px;
+  padding: 0px 6px;
+}
+
+.submitContainer {
+  width: 80%;
+  margin: 24px auto;
+}
+
+/* .submitContainer input:hover {
+  cursor: pointer;
+} */
+/*  */
+
+/* home */
+.bodyContainer {
+  width: 40%;
+  margin: 24px auto;
+}
+
+.navbarContainer {
+  display: flex;
+  width: 40%;
+  margin: 0 auto;
+  justify-content: space-between;
+}
+
+.navbarContainer button {
+  border-radius: 50%;
+}
+
+/* .navbarContainer button:hover {
+  cursor: pointer;
+} */
+
+.inputBar {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 36px;
+}
+
+.inputBar div:first-child {
+  width: 75%;
+}
+
+.inputBar div:first-child input {
+  width: 100%;
+  height: 36px;
+  border-radius: 12px;
+}
+
+.inputBar div:nth-child(2) {
+  width: 20%;
+}
+
+.inputBar div:nth-child(2) input {
+  width: 100%;
+  height: 36px;
+  border-radius: 36px;
+}
+
+/*  */
+
+/* item */
+.itemContainer {
+  width: 90%;
+  margin: 24px auto;
+  display: flex;
+  justify-content: space-between;
+  border: solid 1px black;
+  height: 48px;
+  border-radius: 20px;
+}
+
+.itemContainer div:first-child {
+  text-align: center;
+  width: 70%;
+  font-size: 36px;
+  font-weight: bold;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+.itemContainer div:nth-child(2) button {
+  height: 80%;
+  width: 60%;
+  border-radius: 35px;
+  margin: auto auto;
+  background-color: rgb(114, 196, 255);
 }
 
 .red {
-  color: red;
+  background-color: rgb(255, 105, 105);
 }
 
 .green {
-  color: green;
+  background-color: rgb(122, 255, 122);
 }
